@@ -67,6 +67,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Convert repository name to lowercase
+        run: echo "REPO=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
+
       # Build backend
       - name: Build backend
         run: docker build -t ghcr.io/${{ github.repository }}/backend:latest ./backend
